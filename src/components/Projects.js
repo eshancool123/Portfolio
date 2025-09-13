@@ -74,7 +74,7 @@ const Projects = () => {
 
     const hackathons = [
         { name: 'CodeRush', position: '9th place', year: '2024', organizer: 'Faculty of IT, University of Moratuwa' },
-        { name: 'Innovate with Ballerina', position: 'Top 10', year: '2024', organizer: 'IEEE SB UoM & WSO2' },
+        { name: 'Innovate with Ballerina', position: 'Top 10 Populer', year: '2024', organizer: 'IEEE SB UoM & WSO2' },
         { name: 'MoraXtreme 9.0', position: 'Participant', year: '2024', organizer: 'IEEE SB, University of Moratuwa' },
         { name: 'SpiritX', position: 'Participant', year: '2025', organizer: 'MoraSpirit 360' },
     ];
