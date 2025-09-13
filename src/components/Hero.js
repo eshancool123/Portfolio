@@ -122,7 +122,7 @@ const Hero = () => {
 
           <motion.h1
               // CHANGED: Adjusted font sizes for better responsiveness
-              className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-gradient mb-6 text-glow"
+              className="text-4xl sm:text-5xl md:text-6xl lg:text-6xl font-bold text-gradient mb-6 text-glow"
               variants={sentence}
               initial="hidden"
               animate="visible"

@@ -27,7 +27,7 @@ const Skills = () => {
   const skillCategories = [
     {
       title: 'Programming Languages',
-      emoji: '',
+      emoji: '🧬', // Updated
       description: 'The building blocks of innovation',
       gradient: 'from-red-500 via-orange-500 to-yellow-500',
       bgGlow: 'from-red-500/20 to-orange-500/20',
@@ -42,7 +42,7 @@ const Skills = () => {
     },
     {
       title: 'Frontend Development',
-      emoji: '',
+      emoji: '🎨', // Updated
       description: 'Crafting beautiful user experiences',
       gradient: 'from-pink-500 via-purple-500 to-indigo-500',
       bgGlow: 'from-pink-500/20 to-purple-500/20',
@@ -56,7 +56,7 @@ const Skills = () => {
     },
     {
       title: 'Backend Development',
-      emoji: '',
+      emoji: '⚙️', // Updated
       description: 'Powering robust server architectures',
       gradient: 'from-green-500 via-emerald-500 to-cyan-500',
       bgGlow: 'from-green-500/20 to-emerald-500/20',
@@ -69,7 +69,7 @@ const Skills = () => {
     },
     {
       title: 'Databases',
-      emoji: '',
+      emoji: '🗄️', // Updated
       description: 'Managing data with precision',
       gradient: 'from-blue-500 via-purple-500 to-pink-500',
       bgGlow: 'from-blue-500/20 to-purple-500/20',
@@ -82,7 +82,7 @@ const Skills = () => {
     },
     {
       title: 'Tools & Technologies',
-      emoji: '',
+      emoji: '🧰', // Updated
       description: 'Essential development arsenal',
       gradient: 'from-violet-500 via-purple-500 to-indigo-500',
       bgGlow: 'from-violet-500/20 to-purple-500/20',
@@ -95,7 +95,7 @@ const Skills = () => {
     },
     {
       title: 'Soft Skills',
-      emoji: '',
+      emoji: '🤝', // Updated
       description: 'Human-centered collaboration',
       gradient: 'from-teal-500 via-green-500 to-emerald-500',
       bgGlow: 'from-teal-500/20 to-green-500/20',
@@ -252,7 +252,7 @@ const Skills = () => {
           </motion.div>
 
           {/* Skills Grid */}
-          <div className="grid grid-cols-3 md:grid-cols-5 gap-6 justify-items-center">
+          <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 gap-6 justify-items-center">
             {category.skills.map((skill, skillIndex) => (
               <SkillCard 
                 key={skill.name} 
@@ -325,16 +325,15 @@ const Skills = () => {
               animate={{ rotate: [0, 360] }}
               transition={{ duration: 10, repeat: Infinity, ease: "linear" }}
             >
-             
             </motion.div>
-            <h2 className="text-5xl md:text-7xl font-black text-gradient">
+            <h2 className="text-3xl md:text-4xl font-bold text-gradient mb-4">
               Skills & Expertise
             </h2>
+
             <motion.div
               animate={{ rotate: [360, 0] }}
               transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
             >
-             
             </motion.div>
           </div>
           
@@ -342,7 +341,7 @@ const Skills = () => {
             initial={{ opacity: 0 }}
             animate={isInView ? { opacity: 1 } : { opacity: 0 }}
             transition={{ duration: 1, delay: 0.5 }}
-            className="text-xl text-muted-foreground max-w-4xl mx-auto leading-relaxed"
+            className="text-lg text-muted-foreground max-w-2xl mx-auto"
           >
             A comprehensive showcase of technologies and methodologies that power my development journey,
             each skill carefully honed through passion, practice, and real-world application.

@@ -1,215 +1,269 @@
 "use client";
 
-import { motion } from 'framer-motion';
-import { ExternalLink, Github, Calendar, Trophy, CheckCircle, Briefcase, Code, Gamepad, HeartPulse } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { Github, Trophy, Calendar, ChevronLeft, ChevronRight, X } from 'lucide-react';
 
 const Projects = () => {
-  // Your projects data remains the same...
-  const projects = [
-    {
-      title: 'AskHire - Recruitment Automation System',
-      description: 'A comprehensive recruitment process automation system featuring AI-powered CV matching, MCQ-based pre-screening tests, automated interview scheduling, candidate management, and job postings.',
-      icon: <Briefcase className="w-16 h-16 text-primary/30" />,
-      technologies: ['React.js', '.NET Core', 'MSSQL', 'Tailwind CSS'],
-      features: [
-        'AI-powered CV matching algorithm',
-        'Automated interview scheduling system',
-        'MCQ-based pre-screening tests',
-      ],
-      category: 'Level 2 Software Project',
-      status: 'Completed',
-      github: 'https://github.com/AskHire',
-      live: null
-    },
-    {
-      title: 'Spirit11 - Fantasy Cricket League',
-      description: 'A full-stack fantasy cricket league application with responsive UI, RESTful APIs, MongoDB integration, and AI chatbot features for enhanced user experience.',
-      icon: <Gamepad className="w-16 h-16 text-primary/30" />,
-      technologies: ['React.js', 'Node.js', 'Express.js', 'MongoDB', 'Google AI'],
-      features: [
-        'Fantasy team creation and management',
-        'Real-time cricket data integration',
-        'AI-powered chatbot assistance',
-      ],
-      category: 'SpiritX Competition',
-      status: 'Completed',
-      github: 'https://github.com/Code-Crusaders-UOM',
-      live: null
-    },
-    {
-      title: 'Foodi-Find - Street Food Discovery',
-      description: 'A responsive web application enabling users to share and discover street food locations, built with React.js frontend and Ballerina backend services.',
-      icon: <Code className="w-16 h-16 text-primary/30" />,
-      technologies: ['React.js', 'Ballerina', 'MongoDB Atlas', 'Firebase'],
-      features: [
-        'Location sharing and discovery',
-        'Google Authentication integration',
-        'Interactive maps and geolocation',
-      ],
-      category: 'Innovate with Ballerina',
-      status: 'Completed',
-      github: 'https://github.com/eshancool123/iwb346-code-crusaders',
-      live: null
-    },
-    {
-      title: 'WearRecover - Smart Health Band',
-      description: 'An innovative IoT wearable device using ESP32 and sensors to capture vital signs, enabling physical therapists to create tailored rehabilitation plans.',
-      icon: <HeartPulse className="w-16 h-16 text-primary/30" />,
-      technologies: ['ESP32', 'Firebase', 'IoT Sensors', 'OLED Display'],
-      features: [
-        'Real-time vital signs monitoring',
-        'Heart rate and temperature tracking',
-        'Web dashboard for remote monitoring',
-      ],
-      category: 'Hardware Project',
-      status: 'Completed',
-      github: null,
-      live: null
-    }
-  ];
+    // NEW: State to manage the lightbox (image gallery modal)
+    const [selectedProject, setSelectedProject] = useState(null);
+    const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
-  // Your hackathons data remains the same...
-  const hackathons = [
-    { name: 'CodeRush', position: '2nd Place', year: '2024', organizer: 'Faculty of IT, University of Moratuwa' },
-    { name: 'Innovate with Ballerina', position: 'Top 10', year: '2024', organizer: 'IEEE SB UoM & WSO2' },
-    { name: 'MoraXtreme 9.0', position: 'Participant', year: '2024', organizer: 'IEEE SB, University of Moratuwa' },
-    { name: 'AlgoXplore 1.0', position: 'Participant', year: '2024', organizer: 'Hackathon Hub, NSBM Green University' },
-    { name: 'SpiritX', position: 'Participant', year: '2025', organizer: 'MoraSpirit 360' },
-    { name: 'HackMoral 7.0', position: 'Participant', year: '2025', organizer: 'Faculty of IT, University of Moratuwa' }
-  ];
+    const projects = [
+        {
+          id: 1,
+          title: 'AskHire',
+          subtitle: 'Recruitment Process Automation System',
+          description: 'A comprehensive recruitment system featuring AI-powered CV matching, pre-screening tests, and automated interview scheduling to streamline the hiring process.',
+          technologies: ['React.js', '.NET Core', 'MSSQL', 'Tailwind CSS'],
+          category: 'Level 2 Software Project',
+          status: 'Completed',
+          github: 'https://github.com/AskHire',
+          images: [
+            '/images/askhire/askhire-1.png',
+            '/images/askhire/askhire-2.png',
+            '/images/askhire/askhire-3.png',
+          ],
+        },
+        {
+          id: 2,
+          title: 'Spirit11',
+          subtitle: 'Fantasy Cricket League App',
+          description: 'A full-stack fantasy cricket application with responsive UI, RESTful APIs, and an AI chatbot, built for the SpiritX competition.',
+          technologies: ['React.js', 'Node.js', 'MongoDB', 'Google AI'],
+          category: 'SpiritX Competition',
+          status: 'Completed',
+          github: 'https://github.com/Code-Crusaders-UOM',
+          images: [
+            '/images/spirit11/spirit11-1.png',
+            '/images/spirit11/spirit11-2.png',
+            '/images/spirit11/spirit11-3.png',
+          ],
+        },
+        {
+          id: 3,
+          title: 'Foodi-Find',
+          subtitle: 'Street Food Discovery Platform',
+          description: 'A responsive web app enabling users to share and discover street food locations, built with a React.js frontend and Ballerina backend services.',
+          technologies: ['React.js', 'Ballerina', 'MongoDB Atlas', 'Firebase'],
+          category: 'Innovate with Ballerina',
+          status: 'Completed',
+          github: 'https://github.com/eshancool123/iwb346-code-crusaders',
+          images: [
+            '/images/foodifind/foodifind-1.png',
+            '/images/foodifind/foodifind-2.png',
+            '/images/foodifind/foodifind-3.png',
+          ],
+        },
+        {
+          id: 4,
+          title: 'WearRecover',
+          subtitle: 'IoT Health Monitoring System',
+          description: 'An innovative IoT wearable using ESP32 and sensors to capture vital signs, helping physical therapists create tailored rehabilitation plans.',
+          technologies: ['ESP32', 'Firebase', 'IoT Sensors', 'OLED Display'],
+          category: 'Hardware Project',
+          status: 'Completed',
+          github: null,
+          images: [
+            '/images/wearrecover/wearrecover-1.png',
+            '/images/wearrecover/wearrecover-2.png',
+            '/images/wearrecover/wearrecover-3.png',
+          ],
+        }
+      ];
 
-  const cardVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: { opacity: 1, y: 0 }
-  };
+    const hackathons = [
+        { name: 'CodeRush', position: '9th place', year: '2024', organizer: 'Faculty of IT, University of Moratuwa' },
+        { name: 'Innovate with Ballerina', position: 'Top 10', year: '2024', organizer: 'IEEE SB UoM & WSO2' },
+        { name: 'MoraXtreme 9.0', position: 'Participant', year: '2024', organizer: 'IEEE SB, University of Moratuwa' },
+        { name: 'SpiritX', position: 'Participant', year: '2025', organizer: 'MoraSpirit 360' },
+    ];
 
-  return (
-    <section id="projects" className="py-20">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          variants={cardVariants}
-          transition={{ duration: 0.6 }}
-          viewport={{ once: true }}
-          className="text-center mb-16"
-        >
-          <h2 className="text-3xl md:text-4xl font-bold text-gradient mb-4">Featured Projects</h2>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            A showcase of my recent work and contributions to various projects and competitions.
-          </p>
-        </motion.div>
+    // --- Lightbox Functions ---
+    const openLightbox = (project, index) => {
+        setSelectedProject(project);
+        setCurrentImageIndex(index);
+    };
 
-        {/* --- Enhanced Projects Grid --- */}
-        <div className="grid lg:grid-cols-2 gap-8 mb-20">
-          {projects.map((project, index) => (
-            <motion.div
-              key={project.title}
-              variants={cardVariants}
-              initial="hidden"
-              whileInView="visible"
-              whileHover={{ scale: 1.03, transition: { duration: 0.2 } }}
-              transition={{ duration: 0.6, delay: index * 0.1 }}
-              viewport={{ once: true }}
-              className="bg-card rounded-xl border flex flex-col overflow-hidden group transition-all duration-300 hover:border-primary/50 hover:shadow-2xl hover:shadow-primary/10"
-            >
-              <div className="h-48 bg-secondary flex items-center justify-center border-b">
-                {project.icon}
-              </div>
-              
-              <div className="p-6 flex flex-col flex-grow">
-                <div className="flex items-center justify-between mb-3">
-                  <span className="text-xs font-semibold bg-primary/10 text-primary px-3 py-1 rounded-full">
-                    {project.category}
-                  </span>
-                  <span className="text-xs font-semibold bg-green-500/10 text-green-400 px-3 py-1 rounded-full">
-                    {project.status}
-                  </span>
-                </div>
+    const closeLightbox = () => {
+        setSelectedProject(null);
+    };
 
-                <h3 className="text-xl font-bold mb-2 text-foreground">{project.title}</h3>
-                <p className="text-muted-foreground text-sm leading-relaxed mb-4 flex-grow">
-                  {project.description}
-                </p>
+    const goToNextImage = () => {
+        setCurrentImageIndex((prevIndex) => (prevIndex + 1) % selectedProject.images.length);
+    };
 
-                <div className="mb-4">
-                  <h4 className="text-sm font-semibold mb-2 text-foreground/80">Key Features:</h4>
-                  <ul className="space-y-1.5">
-                    {project.features.map((feature, i) => (
-                      <li key={i} className="flex items-center text-xs text-muted-foreground">
-                        <CheckCircle className="w-3.5 h-3.5 mr-2 text-primary flex-shrink-0" />
-                        {feature}
-                      </li>
+    const goToPrevImage = () => {
+        setCurrentImageIndex((prevIndex) => (prevIndex - 1 + selectedProject.images.length) % selectedProject.images.length);
+    };
+    
+    // Effect for keyboard navigation in lightbox
+    useEffect(() => {
+        const handleKeyDown = (e) => {
+            if (!selectedProject) return;
+            if (e.key === 'ArrowRight') goToNextImage();
+            if (e.key === 'ArrowLeft') goToPrevImage();
+            if (e.key === 'Escape') closeLightbox();
+        };
+        window.addEventListener('keydown', handleKeyDown);
+        return () => window.removeEventListener('keydown', handleKeyDown);
+    }, [selectedProject]);
+
+
+    return (
+        <section id="projects" className="py-20 px-4 bg-gradient-to-br from-background via-background to-secondary/10">
+            <div className="max-w-6xl mx-auto">
+                {/* Header */}
+                <motion.div 
+                    initial={{ opacity: 0, y: -20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.6 }}
+                    viewport={{ once: true }}
+                    className="text-center mb-16"
+                >
+                    <h2 className="text-3xl md:text-4xl font-bold text-gradient mb-4">Featured Projects</h2>
+                    <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+                        A showcase of my recent work, blending technical skill with creative problem-solving.
+                    </p>
+                </motion.div>
+
+                {/* Projects Grid */}
+                <div className="grid lg:grid-cols-2 gap-8 mb-20">
+                    {projects.map((project, index) => (
+                        <motion.div
+                            key={project.id}
+                            initial={{ opacity: 0, y: 50 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            transition={{ delay: index * 0.1, duration: 0.6 }}
+                            viewport={{ once: true }}
+                            className="bg-card rounded-xl border border-border/50 group overflow-hidden transition-all duration-300 hover:border-primary/50 hover:shadow-2xl hover:shadow-primary/10 flex flex-col"
+                        >
+                            <div className="p-6 flex-grow flex flex-col">
+                                <div className="flex justify-between items-start mb-4">
+                                    <span className="text-xs font-semibold bg-primary/10 text-primary px-3 py-1 rounded-full">{project.category}</span>
+                                    <span className="text-xs font-semibold bg-green-500/10 text-green-400 px-3 py-1 rounded-full">{project.status}</span>
+                                </div>
+                                
+                                <h3 className="text-xl font-bold text-foreground mb-1">{project.title}</h3>
+                                <p className="text-muted-foreground text-sm font-medium mb-4">{project.subtitle}</p>
+                                
+                                <p className="text-muted-foreground text-sm mb-6 leading-relaxed flex-grow">{project.description}</p>
+                                
+                                <div className="flex flex-wrap gap-2 mb-6">
+                                    {project.technologies.map((tech) => (
+                                        <span key={tech} className="text-xs bg-secondary text-secondary-foreground px-2 py-1 rounded">{tech}</span>
+                                    ))}
+                                </div>
+
+                                {project.github && (
+                                    <a href={project.github} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-sm text-primary hover:text-primary/80 font-semibold transition-colors">
+                                        <Github className="w-4 h-4" /> View Code
+                                    </a>
+                                )}
+                            </div>
+
+                            {project.images && (
+                                <div className="grid grid-cols-3 gap-1 p-2 bg-secondary/50">
+                                    {project.images.map((image, imgIndex) => (
+                                        <div key={imgIndex} className="overflow-hidden rounded-md cursor-pointer" onClick={() => openLightbox(project, imgIndex)}>
+                                            <img
+                                                src={image}
+                                                alt={`${project.title} screenshot ${imgIndex + 1}`}
+                                                className="w-full h-24 object-cover transition-transform duration-300 group-hover:scale-110"
+                                            />
+                                        </div>
+                                    ))}
+                                </div>
+                            )}
+                        </motion.div>
                     ))}
-                  </ul>
                 </div>
 
-                <div className="flex flex-wrap gap-2 my-4">
-                  {project.technologies.map((tech) => (
-                    <span key={tech} className="text-xs bg-secondary text-secondary-foreground px-2 py-1 rounded">
-                      {tech}
-                    </span>
-                  ))}
-                </div>
-                
-                <div className="mt-auto pt-4 border-t border-border/50 flex gap-4">
-                  {project.github && (
-                    <a href={project.github} target="_blank" rel="noopener noreferrer" className="flex items-center gap-1.5 text-sm font-medium text-muted-foreground hover:text-primary transition-colors">
-                      <Github className="h-4 w-4" /> Code
-                    </a>
-                  )}
-                  {project.live && (
-                    <a href={project.live} target="_blank" rel="noopener noreferrer" className="flex items-center gap-1.5 text-sm font-medium text-muted-foreground hover:text-primary transition-colors">
-                      <ExternalLink className="h-4 w-4" /> Live Demo
-                    </a>
-                  )}
-                </div>
-              </div>
-            </motion.div>
-          ))}
-        </div>
+                {/* --- Restructured Hackathons Section --- */}
+                <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.6 }}
+                    viewport={{ once: true }}
+                >
+                    <div className="flex items-center gap-3 mb-8">
+                        <Trophy className="h-8 w-8 text-primary" />
+                        <h3 className="text-2xl font-bold text-foreground">Hackathons & Competitions</h3>
+                    </div>
+                    <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                        {hackathons.map((hackathon, index) => (
+                            <motion.div
+                                key={index}
+                                initial={{ opacity: 0, scale: 0.9 }}
+                                whileInView={{ opacity: 1, scale: 1 }}
+                                transition={{ delay: index * 0.05, duration: 0.5 }}
+                                viewport={{ once: true }}
+                                className="bg-card p-5 rounded-lg border border-border/60 hover:border-primary/50 transition-all duration-300 shadow-sm hover:shadow-lg hover:shadow-primary/10"
+                            >
+                                <div className="flex items-center justify-between mb-3">
+                                    <span className="text-sm font-semibold text-primary flex items-center gap-1.5"><Calendar className="w-3.5 h-3.5" />{hackathon.year}</span>
+                                </div>
+                                <h4 className="font-bold text-foreground mb-2">{hackathon.name}</h4>
+                                <div className="text-sm font-semibold text-yellow-500 mb-3">{hackathon.position}</div>
+                                <p className="text-xs text-muted-foreground">{hackathon.organizer}</p>
+                            </motion.div>
+                        ))}
+                    </div>
+                </motion.div>
+            </div>
 
-        {/* --- Enhanced Hackathons Section --- */}
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          variants={cardVariants}
-          transition={{ duration: 0.6 }}
-          viewport={{ once: true }}
-        >
-          <div className="flex items-center gap-3 mb-8">
-            <Trophy className="h-8 w-8 text-primary" />
-            <h3 className="text-2xl font-bold">Hackathons & Competitions</h3>
-          </div>
-          
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {hackathons.map((hackathon, index) => (
-              <motion.div
-                key={hackathon.name}
-                initial={{ opacity: 0, y: 10 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.4, delay: index * 0.1 }}
-                viewport={{ once: true }}
-                className="bg-card p-5 rounded-xl border border-border/80 hover:border-primary/50 transition-colors duration-300"
-              >
-                <div className="flex justify-between items-start mb-3">
-                  <h4 className="font-bold text-foreground text-base leading-tight pr-4">{hackathon.name}</h4>
-                  <span className="text-sm font-bold bg-primary/10 text-primary px-3 py-1 rounded-full whitespace-nowrap">
-                    {hackathon.position}
-                  </span>
-                </div>
-                <p className="text-sm text-muted-foreground mb-1">{hackathon.organizer}</p>
-                <div className="flex items-center gap-2 text-xs text-muted-foreground/80">
-                  <Calendar className="h-3.5 w-3.5" />
-                  <span>{hackathon.year}</span>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </motion.div>
-      </div>
-    </section>
-  );
+            {/* --- NEW: Image Lightbox Modal --- */}
+            <AnimatePresence>
+                {selectedProject && (
+                    <motion.div
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                        className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm"
+                        onClick={closeLightbox}
+                    >
+                        <motion.div
+                            initial={{ scale: 0.8, opacity: 0 }}
+                            animate={{ scale: 1, opacity: 1 }}
+                            exit={{ scale: 0.8, opacity: 0 }}
+                            transition={{ type: "spring", stiffness: 300, damping: 30 }}
+                            className="relative w-full max-w-4xl h-full max-h-[80vh] flex items-center justify-center"
+                            onClick={(e) => e.stopPropagation()} // Prevent closing when clicking on the image container
+                        >
+                            {/* Main Image Display */}
+                            <AnimatePresence mode="wait">
+                                <motion.img
+                                    key={currentImageIndex}
+                                    src={selectedProject.images[currentImageIndex]}
+                                    alt={`${selectedProject.title} screenshot ${currentImageIndex + 1}`}
+                                    initial={{ opacity: 0, x: 50 }}
+                                    animate={{ opacity: 1, x: 0 }}
+                                    exit={{ opacity: 0, x: -50 }}
+                                    transition={{ duration: 0.2 }}
+                                    className="max-w-full max-h-full object-contain rounded-lg shadow-2xl"
+                                />
+                            </AnimatePresence>
+                            
+                            {/* Close Button */}
+                            <button onClick={closeLightbox} className="absolute top-2 right-2 p-2 bg-black/50 text-white rounded-full hover:bg-black transition-colors z-10">
+                                <X className="w-6 h-6" />
+                            </button>
+
+                            {/* Previous Button */}
+                            <button onClick={goToPrevImage} className="absolute left-2 top-1/2 -translate-y-1/2 p-2 bg-black/50 text-white rounded-full hover:bg-black transition-colors">
+                                <ChevronLeft className="w-6 h-6" />
+                            </button>
+
+                            {/* Next Button */}
+                            <button onClick={goToNextImage} className="absolute right-2 top-1/2 -translate-y-1/2 p-2 bg-black/50 text-white rounded-full hover:bg-black transition-colors">
+                                <ChevronRight className="w-6 h-6" />
+                            </button>
+                        </motion.div>
+                    </motion.div>
+                )}
+            </AnimatePresence>
+        </section>
+    );
 };
 
 export default Projects;
