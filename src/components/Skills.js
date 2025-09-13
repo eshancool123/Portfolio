@@ -9,7 +9,7 @@ import {
   // Frontend Development
   LayoutPanelLeft, Palette, Globe, View, Airplay,
   // Backend Development
-  Server, Cloud, LayoutGrid, Key, Bug,
+  Server, Cloud, LayoutGrid, Key,
   // Databases
   CloudCog, Table, Files,
   // Tools & Technologies
@@ -17,7 +17,7 @@ import {
   // Soft Skills
   MessageSquare, Users, Puzzle, Brain,
   // Creative icons
-  Sparkles, Zap, Rocket, Heart, Eye, Crown, Star
+  Sparkles, Star
 } from 'lucide-react';
 
 const Skills = () => {

@@ -10,7 +10,7 @@ export const metadata = {
   description: "IT Undergraduate at University of Moratuwa, passionate about full-stack development, AI/ML, and solving real-world problems with technology.",
   keywords: "Eshan Senadhi, Software Engineer, Full Stack Developer, React, Next.js, Node.js, Portfolio, University of Moratuwa",
   author: "Eshan Senadhi",
-  viewport: "width=device-width, initial-scale=1",
+  // viewport: "width=device-width, initial-scale=1", // <-- REMOVED FROM HERE
   robots: "index, follow",
   openGraph: {
     title: "Eshan Senadhi - Software Engineer Portfolio",
@@ -20,11 +20,19 @@ export const metadata = {
   },
 };
 
+export const viewport = {
+  width: 'device-width',
+  initialScale: 1,
+};
+
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    // You can keep it on <html> as it's a common target for extensions too
+    <html lang="en" suppressHydrationWarning> 
       <body
         className={`${inter.className} antialiased`}
+        // ADD THE PROP HERE TO FIX THE ERROR
+        suppressHydrationWarning={true} 
       >
         <ThemeProvider
           attribute="class"

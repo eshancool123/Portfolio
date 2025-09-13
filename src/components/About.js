@@ -25,7 +25,7 @@ const About = () => {
         >
           <h2 className="text-3xl md:text-4xl font-bold text-gradient mb-4">About Me</h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            I'm driven by a passion for turning complex problems into elegant digital solutions.
+            I&apos;m driven by a passion for turning complex problems into elegant digital solutions.
           </p>
         </motion.div>
 
@@ -46,7 +46,7 @@ const About = () => {
               <h3 className="text-2xl font-bold mb-4 text-primary">Who I Am</h3>
               <div className="space-y-4 text-muted-foreground">
                 <p>
-                  I'm an enthusiastic IT undergraduate at the **University of Moratuwa**, bringing nearly two years of hands-on software development experience to the table. My passion is crafting innovative full-stack web applications with intuitive user interfaces and robust back-end architecture.
+                  I&apos;m an enthusiastic IT undergraduate at the **University of Moratuwa**, bringing nearly two years of hands-on software development experience to the table. My passion is crafting innovative full-stack web applications with intuitive user interfaces and robust back-end architecture.
                 </p>
                 <p>
                   I thrive on solving real-world challenges through technology and am currently seeking an internship to contribute to impactful projects and grow within a creative, problem-solving team.
