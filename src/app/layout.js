@@ -2,6 +2,8 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from '@/components/theme-provider';
 import { Toaster } from '@/components/ui/toaster';
+// --- 1. IMPORT the new widget component ---
+import VoiceflowWidget from "@/components/VoiceflowWidget";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -10,7 +12,6 @@ export const metadata = {
   description: "IT Undergraduate at University of Moratuwa, passionate about full-stack development, AI/ML, and solving real-world problems with technology.",
   keywords: "Eshan Senadhi, Software Engineer, Full Stack Developer, React, Next.js, Node.js, Portfolio, University of Moratuwa",
   author: "Eshan Senadhi",
-  // viewport: "width=device-width, initial-scale=1", // <-- REMOVED FROM HERE
   robots: "index, follow",
   openGraph: {
     title: "Eshan Senadhi - Software Engineer Portfolio",
@@ -27,11 +28,9 @@ export const viewport = {
 
 export default function RootLayout({ children }) {
   return (
-    // You can keep it on <html> as it's a common target for extensions too
     <html lang="en" suppressHydrationWarning> 
       <body
         className={`${inter.className} antialiased`}
-        // ADD THE PROP HERE TO FIX THE ERROR
         suppressHydrationWarning={true} 
       >
         <ThemeProvider
@@ -42,6 +41,8 @@ export default function RootLayout({ children }) {
         >
           {children}
           <Toaster />
+          {/* --- 2. ADD the widget component here --- */}
+          <VoiceflowWidget />
         </ThemeProvider>
       </body>
     </html>
