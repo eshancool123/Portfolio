@@ -3,7 +3,7 @@
 import { motion, useInView } from 'framer-motion';
 import { useRef } from 'react';
 import {
-  Code, Database, GitBranch, Lightbulb, 
+  Code, Database, GitBranch, Lightbulb,
   // Programming Languages
   Atom, Box, Braces, Binary, CodeXml,
   // Frontend Development
@@ -27,7 +27,7 @@ const Skills = () => {
   const skillCategories = [
     {
       title: 'Programming Languages',
-      emoji: '🧬', // Updated
+      emoji: '🧬',
       description: 'The building blocks of innovation',
       gradient: 'from-red-500 via-orange-500 to-yellow-500',
       bgGlow: 'from-red-500/20 to-orange-500/20',
@@ -42,7 +42,7 @@ const Skills = () => {
     },
     {
       title: 'Frontend Development',
-      emoji: '🎨', // Updated
+      emoji: '🎨',
       description: 'Crafting beautiful user experiences',
       gradient: 'from-pink-500 via-purple-500 to-indigo-500',
       bgGlow: 'from-pink-500/20 to-purple-500/20',
@@ -56,7 +56,7 @@ const Skills = () => {
     },
     {
       title: 'Backend Development',
-      emoji: '⚙️', // Updated
+      emoji: '⚙️',
       description: 'Powering robust server architectures',
       gradient: 'from-green-500 via-emerald-500 to-cyan-500',
       bgGlow: 'from-green-500/20 to-emerald-500/20',
@@ -69,7 +69,7 @@ const Skills = () => {
     },
     {
       title: 'Databases',
-      emoji: '🗄️', // Updated
+      emoji: '🗄️',
       description: 'Managing data with precision',
       gradient: 'from-blue-500 via-purple-500 to-pink-500',
       bgGlow: 'from-blue-500/20 to-purple-500/20',
@@ -82,7 +82,7 @@ const Skills = () => {
     },
     {
       title: 'Tools & Technologies',
-      emoji: '🧰', // Updated
+      emoji: '🧰',
       description: 'Essential development arsenal',
       gradient: 'from-violet-500 via-purple-500 to-indigo-500',
       bgGlow: 'from-violet-500/20 to-purple-500/20',
@@ -95,7 +95,7 @@ const Skills = () => {
     },
     {
       title: 'Soft Skills',
-      emoji: '🤝', // Updated
+      emoji: '🤝',
       description: 'Human-centered collaboration',
       gradient: 'from-teal-500 via-green-500 to-emerald-500',
       bgGlow: 'from-teal-500/20 to-green-500/20',
@@ -111,7 +111,7 @@ const Skills = () => {
 
   const SkillCard = ({ skill, delay }) => {
     const SkillIcon = skill.icon;
-    
+       
     return (
       <motion.div
         initial={{ opacity: 0, scale: 0, rotate: -180 }}
@@ -131,14 +131,15 @@ const Skills = () => {
           y: -5,
           transition: { duration: 0.3 }
         }}
-        className="group relative cursor-pointer"
+        className="group relative cursor-pointer flex flex-col items-center" // UPDATED
         viewport={{ once: true }}
       >
         {/* Glow effect */}
         <div className={`absolute inset-0 ${skill.color} rounded-2xl blur-xl opacity-0 group-hover:opacity-30 transition-opacity duration-500 transform scale-110`}></div>
-        
+           
+        {/* UPDATED: Changed from fixed w-24 h-24 to responsive w-full aspect-square */}
         <div className={`
-          relative w-24 h-24 ${skill.color} rounded-2xl flex flex-col items-center justify-center
+          relative w-full max-w-[96px] aspect-square ${skill.color} rounded-2xl flex flex-col items-center justify-center
           shadow-lg group-hover:shadow-2xl transition-all duration-500
           overflow-hidden
         `}>
@@ -149,7 +150,7 @@ const Skills = () => {
             whileHover={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.3 }}
           />
-          
+             
           {/* Icon */}
           <motion.div
             whileHover={{ rotate: 360, scale: 1.2 }}
@@ -157,7 +158,7 @@ const Skills = () => {
           >
             <SkillIcon className="w-8 h-8 text-white z-10" />
           </motion.div>
-          
+             
           {/* Sparkle effects */}
           <motion.div
             className="absolute inset-0 pointer-events-none"
@@ -167,7 +168,7 @@ const Skills = () => {
             <Sparkles className="absolute top-2 right-2 w-3 h-3 text-white/60" />
             <Sparkles className="absolute bottom-2 left-2 w-2 h-2 text-white/40" />
           </motion.div>
-          
+             
           {/* Shine effect */}
           <motion.div
             className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent -translate-x-full"
@@ -175,7 +176,7 @@ const Skills = () => {
             transition={{ duration: 0.6 }}
           />
         </div>
-        
+           
         {/* Skill name */}
         <motion.p
           initial={{ opacity: 0, y: 10 }}
@@ -204,7 +205,7 @@ const Skills = () => {
       >
         {/* Background glow effect */}
         <div className={`absolute -inset-4 bg-gradient-to-r ${category.bgGlow} rounded-3xl blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-1000`}></div>
-        
+           
         {/* Main card */}
         <div className="relative bg-card/50 backdrop-blur-sm rounded-3xl p-8 border border-border/50 group-hover:border-primary/30 transition-all duration-500 overflow-hidden">
           {/* Decorative elements */}
@@ -216,7 +217,7 @@ const Skills = () => {
               <Star className="w-full h-full text-primary" />
             </motion.div>
           </div>
-          
+             
           {/* Header */}
           <motion.div
             initial={{ opacity: 0, x: -30 }}
@@ -240,7 +241,7 @@ const Skills = () => {
                 </motion.span>
               </div>
             </motion.div>
-            
+               
             <div>
               <h3 className={`text-2xl md:text-3xl font-bold bg-gradient-to-r ${category.gradient} bg-clip-text text-transparent mb-2`}>
                 {category.title}
@@ -298,7 +299,7 @@ const Skills = () => {
         <div className="absolute top-20 left-10 w-64 h-64 bg-gradient-to-r from-primary/10 to-purple-500/10 rounded-full blur-3xl animate-pulse"></div>
         <div className="absolute bottom-40 right-20 w-80 h-80 bg-gradient-to-r from-blue-500/10 to-cyan-500/10 rounded-full blur-3xl animate-pulse delay-1000"></div>
         <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-gradient-to-r from-pink-500/5 to-orange-500/5 rounded-full blur-3xl animate-pulse delay-2000"></div>
-        
+           
         {/* Floating geometric shapes */}
         <motion.div
           animate={{ rotate: 360, scale: [1, 1.1, 1] }}
@@ -336,7 +337,7 @@ const Skills = () => {
             >
             </motion.div>
           </div>
-          
+             
           <motion.p 
             initial={{ opacity: 0 }}
             animate={isInView ? { opacity: 1 } : { opacity: 0 }}
