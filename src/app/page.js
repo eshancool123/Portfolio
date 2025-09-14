@@ -36,7 +36,8 @@ export default function Home() {
   }
 
   return (
-    <div className="min-h-screen bg-background">
+    // THE ONLY CHANGE IS HERE: Added overflow-x-hidden
+    <div className="min-h-screen bg-background overflow-x-hidden">
       <Navbar />
       <main>
         <Hero />
