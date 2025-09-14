@@ -121,25 +121,25 @@ const Hero = () => {
           </motion.p>
 
           <motion.h1
-              // CHANGED: Adjusted font sizes for better responsiveness
-              className="text-4xl sm:text-5xl md:text-6xl lg:text-6xl font-bold text-gradient mb-6 text-glow"
-              variants={sentence}
-              initial="hidden"
-              animate="visible"
+            // UPDATED: Adjusted font sizes for better scaling on small devices
+            className="text-4xl sm:text-5xl md:text-6xl font-bold text-gradient mb-6 text-glow"
+            variants={sentence}
+            initial="hidden"
+            animate="visible"
           >
-              {name.split("").map((char, index) => (
-                  <motion.span key={char + "-" + index} variants={letter}>
-                      {char}
-                  </motion.span>
-              ))}
+            {name.split("").map((char, index) => (
+                <motion.span key={char + "-" + index} variants={letter}>
+                  {char}
+                </motion.span>
+            ))}
           </motion.h1>
 
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 1.5 }}
-            // CHANGED: Corrected the inconsistent and jarring font size progression
-            className="text-2xl md:text-3xl lg:text-4xl font-semibold text-foreground mb-6"
+            // UPDATED: Adjusted font size progression for consistency
+            className="text-2xl md:text-3xl font-semibold text-foreground mb-6"
           >
             Intern Software Engineer
           </motion.h2>
