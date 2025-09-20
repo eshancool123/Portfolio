@@ -72,14 +72,19 @@ const Hero = () => {
     document.querySelector('#contact')?.scrollIntoView({ behavior: 'smooth' });
   };
 
-  const downloadCV = () => {
-    const link = document.createElement('a');
-    link.href = 'https://customer-assets.emergentagent.com/job_740a080e-48f6-4dee-bd7e-ad91995dcc51/artifacts/zqxg82oj_CV1.pdf';
-    link.download = 'Eshan_Senadhi_CV.pdf';
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-  };
+// This is the NEW and UPDATED code
+const downloadCV = () => {
+  const link = document.createElement('a');
+  // --- REPLACE THIS with the link to your new CV ---
+  link.href = '/CV4.pdf'; // This works if you put the file in the `public` folder
+
+  // You can also update the default filename for the download
+  link.download = 'Eshan_Senadhi_CV-2025.pdf'; 
+  
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+};
 
   // Framer Motion variants for staggered text animation
   const sentence = {
