@@ -76,7 +76,7 @@ const Hero = () => {
 const downloadCV = () => {
   const link = document.createElement('a');
   // --- REPLACE THIS with the link to your new CV ---
-  link.href = '/CV4.pdf'; // This works if you put the file in the `public` folder
+  link.href = '/EshanSenadhiCV.pdf'; // This works if you put the file in the `public` folder
 
   // You can also update the default filename for the download
   link.download = 'Eshan_Senadhi_CV-2025.pdf'; 
