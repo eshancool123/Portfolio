@@ -76,7 +76,7 @@ const Skills = () => {
       skills: [
         { name: 'MongoDB', icon: Database, color: 'bg-green-500' },
         { name: 'MySQL', icon: CloudCog, color: 'bg-blue-500' },
-        { name: 'SQL Server', icon: Table, color: 'bg-red-500' },
+        { name: 'MSSQL', icon: Table, color: 'bg-red-500' },
         { name: 'Firebase', icon: Files, color: 'bg-yellow-500' }
       ]
     },
