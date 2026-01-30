@@ -75,7 +75,7 @@ const Navbar = () => {
                 onClick={() => handleLinkClick("#home")}
                 className="cursor-pointer"
               >
-                <h1 className="text-2xl font-bold text-gradient">Eshan</h1>
+                <h1 className="text-2xl font-bold text-gradient">Eshan Senadhi</h1>
               </div>
             </motion.div>
 
