@@ -8,6 +8,7 @@ import VoiceflowWidget from "@/components/VoiceflowWidget";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
+  metadataBase: new URL('https://eshansenadhi.me'),
   title: "Eshan Senadhi - Software Engineer | Portfolio",
   description: "IT Undergraduate at University of Moratuwa, passionate about full-stack development, AI/ML, and solving real-world problems with technology.",
   keywords: "Eshan Senadhi, Software Engineer, Full Stack Developer, React, Next.js, Node.js, Portfolio, University of Moratuwa",
